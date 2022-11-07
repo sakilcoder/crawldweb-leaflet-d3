@@ -8,7 +8,7 @@ function onEachMarker(feature, layer) {
     str_popup += '<h5 class="text-center" style="font-weight: bold">Spectra of ' + feature.properties.name + '</h5>';
     str_popup += '<table style="width: 100%">';
     str_popup += '<tr><td class="text-center">Phone: ' + feature.properties.phone + '</td></tr>';
-    str_popup += '<tr><td class="text-center">Address: ' + feature.properties.phone + '</td></tr>';
+    str_popup += '<tr><td class="text-center">Address: ' + feature.properties.address + '</td></tr>';
     str_popup += '</table>';
 
     popup.setContent(str_popup);

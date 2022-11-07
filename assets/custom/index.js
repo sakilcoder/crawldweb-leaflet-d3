@@ -12,7 +12,8 @@ var countyLayer;
 // var markers = L.layerGroup();
 var map = L.map('map', {
     layers: [basemapCarto]
-}).setView([40.6584953781445, -73.90498729553246], 12);
+}).setView([40.6584953781445, -73.90498729553246], 14);
+
 // map.options.minZoom = 4;
 // map.fitBounds(aoiLayer.getBounds());
 var baseLayers = {
@@ -27,20 +28,12 @@ let parks_lg = L.layerGroup();
 let markers_lg = L.layerGroup();
 
 
-var gas_stations_geo = { "type": "FeatureCollection" };
-var restaurants_geo = { "type": "FeatureCollection" };
-var parks_geo = { "type": "FeatureCollection" };
 var markers_geo = { "type": "FeatureCollection" };
 
-let gas_stations= [];
-let restaurants= [];
-let parks= [];
 let markers= [];
 
 fetchText(csvUrl).then(text => {
     let pois = d3.csvParse(text);
-    // console.log(pois);
-    let features = [];
 
     for (i = 0; i < pois.length; i++) {
         if(pois[i].latlon=='')
@@ -58,23 +51,16 @@ fetchText(csvUrl).then(text => {
             "geometry": { "type": "Point", "coordinates": [parseFloat(latlng[1]), parseFloat(latlng[0])] }
         };
         markers.push(feature);
-        // let type = pois[i].type;
-        // if(type=='Gas station'){
-        //     gas_stations.push(feature);
-        // }else if(type=='Restaurant'){
-        //     restaurants.push(feature);
-        // }else if(type=='Restaurant'){
-        //     parks.push(feature);
-        // }
     }
     markers_geo.features = markers;
-    L.geoJSON(markers_geo, {
+
+    let markerLayer = L.geoJSON(markers_geo, {
         onEachFeature: onEachMarker,
     }).addTo(map);
    
     // var controlSearch = new L.Control.Search({
 	// 	// position:'topright',	
-	// 	layer: poiLayer,
+	// 	layer: markerLayer,
 	// 	initial: false,
 	// 	zoom: 12,
 	// 	// marker: true,
@@ -90,9 +76,9 @@ fetchText(csvUrl).then(text => {
 
 var layerControl = L.control.layers(baseLayers).addTo(map);
 
-// L.easyButton('fa-home fa-lg', function () {
-
-// }).addTo(map);
+L.easyButton('fa-home fa-lg', function () {
+    map.flyTo([40.6584953781445, -73.90498729553246], 14);
+}).addTo(map);
 
 lc = L.control
     .locate({
