@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
   <link rel="stylesheet" href="assets/lib/leaflet.css" />
   <script src="assets/lib/leaflet.js"></script>
 
@@ -32,11 +33,11 @@
 
 
   <link rel="stylesheet" href="assets/lib/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/lib/jquery-ui.css">
   <script src="assets/lib/jquery.min.js"></script>
+  <script src="assets/lib/jquery-ui.js"></script>
   <script src="assets/lib/bootstrap.min.js"></script>
-
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
@@ -50,11 +51,15 @@
       <img src="assets/images/logo.png" media="min-width: 200px" alt="CRAWLDWEB" class="responsive">
     </div>
     <div class="search">
-
       <input type="text" id="search" placeholder="Search...">
       <i class='bx bx-menu' id="btn"></i>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="infoDiv"></div>
+      </div>
 
+    </div>
   </div>
   <section class="home-section">
     <div id="map"></div>

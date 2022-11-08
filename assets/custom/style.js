@@ -40,4 +40,8 @@ let pngIcon = function (url) {
         iconUrl: url
     })
 }
-
+var tempIcon = L.icon({
+    iconUrl: 'assets/icon/oth.png',
+    iconSize: [24, 36],
+    iconAnchor: [12, 36]
+});
