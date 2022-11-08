@@ -23,6 +23,13 @@ function onEachMarker(feature, layer) {
         e.target.closePopup();
     });
 
+    layer.on('click', function (e) {
+        console.log(feature.properties.name);
+        let infoDiv=document.getElementById('infoDiv');
+        infoDiv.innerHTML=feature.properties.name;
+        
+    });
+
 }
 
 var getIcon = function (type) {
