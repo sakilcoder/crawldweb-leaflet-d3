@@ -36,10 +36,31 @@
     <script src="assets/lib/jquery.min.js"></script>
     <script src="assets/lib/bootstrap.min.js"></script>
 
+    <script src="assets/custom/sidebar.js"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 
 <body>
-    <div id="map"></div>
+    
+    <div class="sidebar">
+        <div class="logo-details">
+          
+          <!-- <img srcset="small.JPG" media = "max-width: 78px" alt="CRAWLDWEB" class="logo"> -->
+    
+          <img src="assets/images/logo.png" media = "min-width: 200px" alt="CRAWLDWEB" class="responsive">
+        </div>
+        <div class="search">
+    
+          <input type="text" id = "search" placeholder="Search...">
+          <i class='bx bx-menu' id="btn"></i>
+        </div>
+        
+      </div>
+      <section class="home-section">
+        <div id="map"></div>
+      </section>
     <script src="assets/custom/basemaps.js"></script>
     <script src="assets/custom/popup.js"></script>
     <script src="assets/custom/style.js"></script>
