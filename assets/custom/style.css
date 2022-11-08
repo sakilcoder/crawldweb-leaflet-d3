@@ -108,7 +108,7 @@ body {
     left: 0;
     top: 0;
     height: 100%;
-    width: 250px;
+    width: 400px;
     background: #f0f0f0;
     padding: 6px 14px;
     z-index: 99;
@@ -206,10 +206,10 @@ body {
     display: none;
   }
   .sidebar input{
-    padding: 0 20px 0 50px;
+    padding: 0 50px 0 10px;
   
     font-size: 15px;
-    color: #FFF;
+    /* color: #FFF; */
     font-weight: 400;
     outline: none;
     height: 50px;
@@ -218,7 +218,7 @@ body {
     border: none;
     border-radius: 12px;
     transition: all 0.5s ease;
-    background: #1d1b31;
+    /* background: #1d1b31; */
     opacity: 1;
   }
   .sidebar.close input{
@@ -336,7 +336,7 @@ body {
     background: #E4E9F7;
     min-height: 100vh;
     top: 0;
-    left: 250px;
+    left: 400px;
     width: calc(100% - 250px);
     transition: all 0.5s ease;
     z-index: 2;
@@ -352,7 +352,7 @@ body {
     font-weight: 500;
     margin: 18px
   }
-  /* 
+/*   
   @media (min-width: 420px) {
     .sidebar li .tooltip{
       display: none;

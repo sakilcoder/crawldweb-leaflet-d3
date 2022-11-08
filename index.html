@@ -2,70 +2,69 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Map</title>
-    <link rel="stylesheet" href="assets/custom/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,500&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Map</title>
+  <link rel="stylesheet" href="assets/custom/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="assets/lib/leaflet.css" />
-    <script src="assets/lib/leaflet.js"></script>
+  <link rel="stylesheet" href="assets/lib/leaflet.css" />
+  <script src="assets/lib/leaflet.js"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
-    <!--  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+  <!--  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> -->
-    <link rel="stylesheet" href="assets/lib/L.Control.Locate.min.css" />
-    <script src="assets/lib/L.Control.Locate.js"></script>
+  <link rel="stylesheet" href="assets/lib/L.Control.Locate.min.css" />
+  <script src="assets/lib/L.Control.Locate.js"></script>
 
-    <!-- <link href="assets/lib/OSMBuildings.css" rel="stylesheet">
+  <!-- <link href="assets/lib/OSMBuildings.css" rel="stylesheet">
     <script src="assets/lib/OSMBuildings.js"></script>
  -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
-    <script src="assets/lib/d3.v7.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+  <script src="assets/lib/d3.v7.min.js"></script>
 
 
-    <link rel="stylesheet" href="assets/lib/bootstrap.min.css">
-    <script src="assets/lib/jquery.min.js"></script>
-    <script src="assets/lib/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="assets/lib/bootstrap.min.css">
+  <script src="assets/lib/jquery.min.js"></script>
+  <script src="assets/lib/bootstrap.min.js"></script>
 
-    <script src="assets/custom/sidebar.js"></script>
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
 <body>
-    
-    <div class="sidebar">
-        <div class="logo-details">
-          
-          <!-- <img srcset="small.JPG" media = "max-width: 78px" alt="CRAWLDWEB" class="logo"> -->
-    
-          <img src="assets/images/logo.png" media = "min-width: 200px" alt="CRAWLDWEB" class="responsive">
-        </div>
-        <div class="search">
-    
-          <input type="text" id = "search" placeholder="Search...">
-          <i class='bx bx-menu' id="btn"></i>
-        </div>
-        
-      </div>
-      <section class="home-section">
-        <div id="map"></div>
-      </section>
-    <script src="assets/custom/basemaps.js"></script>
-    <script src="assets/custom/popup.js"></script>
-    <script src="assets/custom/style.js"></script>
-    <script src="assets/custom/render.js"></script>
-    <script src="assets/custom/index.js"></script>
+
+  <div class="sidebar">
+    <div class="logo-details">
+
+      <!-- <img srcset="small.JPG" media = "max-width: 78px" alt="CRAWLDWEB" class="logo"> -->
+
+      <img src="assets/images/logo.png" media="min-width: 200px" alt="CRAWLDWEB" class="responsive">
+    </div>
+    <div class="search">
+
+      <input type="text" id="search" placeholder="Search...">
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+
+  </div>
+  <section class="home-section">
+    <div id="map"></div>
+  </section>
+  <script src="assets/custom/sidebar.js"></script>
+  <script src="assets/custom/basemaps.js"></script>
+  <script src="assets/custom/popup.js"></script>
+  <script src="assets/custom/style.js"></script>
+  <script src="assets/custom/render.js"></script>
+  <script src="assets/custom/index.js"></script>
 
 </body>
 
