@@ -24,6 +24,9 @@
   <link rel="stylesheet" href="assets/lib/L.Control.Locate.min.css" />
   <script src="assets/lib/L.Control.Locate.js"></script>
 
+  <link rel="stylesheet" href="assets/lib/leaflet-routing-machine/leaflet-routing-machine.css" />
+  <script src="assets/lib/leaflet-routing-machine/leaflet-routing-machine.js"></script>
+  <script src="assets/lib/Control.Geocoder.js"></script>
   <!-- <link href="assets/lib/OSMBuildings.css" rel="stylesheet">
     <script src="assets/lib/OSMBuildings.js"></script>
  -->
@@ -50,16 +53,23 @@
 
       <img src="assets/images/logo.png" media="min-width: 200px" alt="CRAWLDWEB" class="responsive">
     </div>
-    <div class="search">
+    <!-- <div class="search">
       <input type="text" id="search" placeholder="Search...">
       <i class='bx bx-menu' id="btn"></i>
-    </div>
-    <div class="row">
+    </div> -->
+    <!-- <div class="row">
       <div class="col-md-12">
         <div id="infoDiv"></div>
       </div>
 
+    </div> -->
+    <div class="row">
+      <div class="col-md-12">
+        <div id="routeDiv"></div>
+      </div>
+
     </div>
+
   </div>
   <section class="home-section">
     <div id="map"></div>

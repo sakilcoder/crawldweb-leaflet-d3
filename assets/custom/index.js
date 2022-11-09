@@ -50,6 +50,7 @@ let markers = [];
 
 fetchText(csvUrl).then(text => {
     let pois = d3.csvParse(text);
+
     let availableTags = [];
     for (i = 0; i < pois.length; i++) {
         if (pois[i].latlon == '')
@@ -88,13 +89,13 @@ fetchText(csvUrl).then(text => {
 
     $("#search").autocomplete({
         source: availableTags,
-        select: function(e, ui) {
+        select: function (e, ui) {
             console.log(ui);
-        //   $("#sval").val(ui.item.theValue);
+            //   $("#sval").val(ui.item.theValue);
             drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
         }
     });
-    
+
 
 });
 
@@ -115,3 +116,73 @@ lc = L.control
 
     })
     .addTo(map);
+
+
+window.lrmConfig = {};
+
+var routeControl = L.Routing.control(L.extend(window.lrmConfig, {
+    waypoints: [
+        // L.latLng(40.6584953781445, -73.90498729553246),
+        // L.latLng(40.681542945656254, -73.90318024134007)
+    ],
+    geocoder: L.Control.Geocoder.nominatim(),
+    routeWhileDragging: true,
+    reverseWaypoints: true,
+    showAlternatives: true,
+    altLineOptions: {
+        styles: [
+            { color: 'black', opacity: 0.15, weight: 9 },
+            { color: 'white', opacity: 0.8, weight: 6 },
+            { color: 'blue', opacity: 0.5, weight: 2 }
+        ]
+    }
+})).addTo(map);
+
+L.Routing.errorControl(routeControl).addTo(map);
+
+var routingControlContainer = routeControl.getContainer();
+var controlContainerParent = routingControlContainer.parentNode;
+controlContainerParent.removeChild(routingControlContainer);
+var itineraryDiv = document.getElementById('routeDiv');
+itineraryDiv.appendChild(routingControlContainer);
+
+
+// let routeControl =  L.Routing.control({
+//         waypoints: [
+//           L.latLng(40.6584953781445, -73.90498729553246),
+//           L.latLng(40.681542945656254, -73.90318024134007)
+//         ],
+//         routeWhileDragging: true
+//       }).addTo(map);
+
+// function createButton(label, container) {
+//     var btn = L.DomUtil.create('button', '', container);
+//     btn.setAttribute('type', 'button');
+//     btn.innerHTML = label;
+//     return btn;
+// }
+
+// map.on('click', function(e) {
+//     var container = L.DomUtil.create('div'),
+//         startBtn = createButton('Start from this location', container),
+//         destBtn = createButton('Go to this location', container);
+
+//     L.popup()
+//         .setContent(container)
+//         .setLatLng(e.latlng)
+//         .openOn(map);
+// });
+
+// L.Routing.control({
+//     waypoints: [
+//         L.latLng(40.6584953781445, -73.90498729553246),
+//         L.latLng(40.681542945656254, -73.90318024134007)
+//     ],
+//     routeWhileDragging: true,
+//     geocoder: L.Control.Geocoder.nominatim()
+// })
+// .on('routesfound', function(e) {
+//     var routes = e.routes;
+//     alert('Found ' + routes.length + ' route(s).');
+// })
+// .addTo(map);

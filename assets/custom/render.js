@@ -25,8 +25,8 @@ function onEachMarker(feature, layer) {
 
     layer.on('click', function (e) {
         console.log(feature.properties.name);
-        let infoDiv=document.getElementById('infoDiv');
-        infoDiv.innerHTML=feature.properties.name;
+        // let infoDiv=document.getElementById('infoDiv');
+        // infoDiv.innerHTML=feature.properties.name + ", " +feature.properties.address;
         
     });
 
