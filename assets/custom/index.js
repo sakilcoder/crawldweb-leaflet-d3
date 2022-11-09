@@ -87,14 +87,14 @@ fetchText(csvUrl).then(text => {
         onEachFeature: onEachMarker,
     }).addTo(map);
 
-    $("#search").autocomplete({
-        source: availableTags,
-        select: function (e, ui) {
-            console.log(ui);
-            //   $("#sval").val(ui.item.theValue);
-            drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
-        }
-    });
+    // $("#search").autocomplete({
+    //     source: availableTags,
+    //     select: function (e, ui) {
+    //         console.log(ui);
+    //         //   $("#sval").val(ui.item.theValue);
+    //         drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
+    //     }
+    // });
 
 
 });
@@ -122,8 +122,8 @@ window.lrmConfig = {};
 
 var routeControl = L.Routing.control(L.extend(window.lrmConfig, {
     waypoints: [
-        // L.latLng(40.6584953781445, -73.90498729553246),
-        // L.latLng(40.681542945656254, -73.90318024134007)
+        L.latLng(40.6584953781445, -73.90498729553246),
+        L.latLng(40.681542945656254, -73.90318024134007)
     ],
     geocoder: L.Control.Geocoder.nominatim(),
     routeWhileDragging: true,
@@ -138,6 +138,8 @@ var routeControl = L.Routing.control(L.extend(window.lrmConfig, {
     }
 })).addTo(map);
 
+console.log(routeControl);
+
 L.Routing.errorControl(routeControl).addTo(map);
 
 var routingControlContainer = routeControl.getContainer();
@@ -145,7 +147,6 @@ var controlContainerParent = routingControlContainer.parentNode;
 controlContainerParent.removeChild(routingControlContainer);
 var itineraryDiv = document.getElementById('routeDiv');
 itineraryDiv.appendChild(routingControlContainer);
-
 
 // let routeControl =  L.Routing.control({
 //         waypoints: [

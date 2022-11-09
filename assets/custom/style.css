@@ -1,6 +1,7 @@
 html,
 body {
-  font-family: 'Barlow Condensed', sans-serif;
+  /* font-family: 'Barlow Condensed', sans-serif; */
+  font-family: 'Barlow', sans-serif;
   padding: 0;
   margin: 0;
   height: 100%;
@@ -45,7 +46,8 @@ body {
 .popupCustom .leaflet-popup-content-wrapper {
   background: #2A3E56;
   color: #fff;
-  font-family: Barlow;
+  /* font-family: Barlow; */
+  font-family: 'Barlow', sans-serif;
   font-size: 14px;
   line-height: 24px;
   border-radius: 0px;
@@ -114,7 +116,8 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
+  font-family: 'Barlow', sans-serif;
 }
 
 .sidebar {
