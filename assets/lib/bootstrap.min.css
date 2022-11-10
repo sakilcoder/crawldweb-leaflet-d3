@@ -6,7 +6,11 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
     /* font-family: sans-serif; */
-    font-family: 'Barlow', sans-serif;
+    /* font-family: 'Barlow', sans-serif; */
+
+    font-family: 'Barlow Condensed';
+    font-weight: 500;
+    font-style: italic;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
 }
@@ -322,11 +326,20 @@ th {
     }
 }
 
-@font-face {
+/* @font-face {
     font-family: "Glyphicons Halflings";
     font-family: 'Barlow', sans-serif;
     src: url(../fonts/glyphicons-halflings-regular.eot);
     src: url(../fonts/glyphicons-halflings-regular.eot?#iefix) format("embedded-opentype"), url(../fonts/glyphicons-halflings-regular.woff2) format("woff2"), url(../fonts/glyphicons-halflings-regular.woff) format("woff"), url(../fonts/glyphicons-halflings-regular.ttf) format("truetype"), url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format("svg")
+} */
+
+@font-face {
+    font-family: 'Barlow Condensed';
+    src: url('../fonts/BarlowCondensed-MediumItalic.woff2') format('woff2'),
+        url('../fonts/BarlowCondensed-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
 }
 
 .glyphicon {
@@ -334,9 +347,12 @@ th {
     top: 1px;
     display: inline-block;
     /* font-family: "Glyphicons Halflings"; */
-    font-family: 'Barlow', sans-serif;
+    /* font-family: 'Barlow', sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 400; */
+    font-family: 'Barlow Condensed';
+    font-weight: 500;
+    font-style: italic;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
@@ -1411,7 +1427,10 @@ html {
 
 body {
     /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
-    font-family: 'Barlow', sans-serif;
+    /* font-family: 'Barlow', sans-serif; */
+    font-family: 'Barlow Condensed';
+    font-weight: 500;
+    font-style: italic;
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
@@ -7395,8 +7414,11 @@ button.close {
     z-index: 1070;
     display: block;
     /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
-    font-family: 'Barlow', sans-serif;
-    font-style: normal;
+    /* font-family: 'Barlow', sans-serif; */
+    font-family: 'Barlow Condensed';
+    /* font-weight: 500; */
+    font-style: italic;
+    /* font-style: normal; */
     font-weight: 400;
     line-height: 1.42857143;
     line-break: auto;
@@ -7530,8 +7552,11 @@ button.close {
     max-width: 276px;
     padding: 1px;
     /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
-    font-family: 'Barlow', sans-serif;
-    font-style: normal;
+    /* font-family: 'Barlow', sans-serif; */
+    font-family: 'Barlow Condensed';
+    /* font-weight: 500; */
+    font-style: italic;
+    /* font-style: normal; */
     font-weight: 400;
     line-height: 1.42857143;
     line-break: auto;
@@ -7841,7 +7866,10 @@ button.close {
     width: 20px;
     height: 20px;
     /* font-family: serif; */
-    font-family: 'Barlow', sans-serif;
+    /* font-family: 'Barlow', sans-serif; */
+    font-family: 'Barlow Condensed';
+    font-weight: 500;
+    font-style: italic;
     line-height: 1
 }
 
