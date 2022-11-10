@@ -27,12 +27,13 @@ var countyLayer;
 
 // var markers = L.layerGroup();
 var map = L.map('map', {
-    layers: [basemapCarto]
+    layers: [OpenStreetMap_Mapnik]
 }).setView([40.6584953781445, -73.90498729553246], 14);
 
 map.options.minZoom = 8;
 // map.fitBounds(aoiLayer.getBounds());
 var baseLayers = {
+    'OSM': OpenStreetMap_Mapnik,
     'Carto': basemapCarto,
     'Google': googleStreets,
     'Satellite': Esri_WorldImagery,
