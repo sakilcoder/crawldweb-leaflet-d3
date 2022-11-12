@@ -29,7 +29,7 @@ var map = L.map('map', {
     layers: [OpenStreetMap_Mapnik]
 }).setView([40.6584953781445, -73.90498729553246], 14);
 
-map.options.minZoom = 8;
+map.options.minZoom = 6;
 // map.fitBounds(aoiLayer.getBounds());
 var baseLayers = {
     'OSM': OpenStreetMap_Mapnik,
@@ -37,12 +37,9 @@ var baseLayers = {
     'Google': googleStreets,
     'Satellite': Esri_WorldImagery,
 };
+var layerControl = L.control.layers(baseLayers).addTo(map);
 
-let gas_stations_lg = L.layerGroup();
-let restaurantss_lg = L.layerGroup();
-let parks_lg = L.layerGroup();
 let markers_lg = L.layerGroup();
-
 
 var markers_geo = { "type": "FeatureCollection" };
 
@@ -107,7 +104,7 @@ fetchText(csvUrl).then(text => {
 
 });
 
-var layerControl = L.control.layers(baseLayers).addTo(map);
+
 
 L.easyButton('fa-home fa-lg', function () {
     map.flyTo([40.6584953781445, -73.90498729553246], 14);
@@ -130,8 +127,8 @@ window.lrmConfig = {};
 
 var routeControl = L.Routing.control(L.extend(window.lrmConfig, {
     waypoints: [
-        L.latLng(40.6584953781445, -73.90498729553246),
-        L.latLng(40.681542945656254, -73.90318024134007)
+        // L.latLng(40.6584953781445, -73.90498729553246),
+        // L.latLng(40.681542945656254, -73.90318024134007)
     ],
     geocoder: L.Control.Geocoder.nominatim(),
     routeWhileDragging: true,
@@ -148,13 +145,31 @@ var routeControl = L.Routing.control(L.extend(window.lrmConfig, {
 
 console.log(routeControl);
 
-L.Routing.errorControl(routeControl).addTo(map);
+// L.Routing.errorControl(routeControl).addTo(map);
 
 var routingControlContainer = routeControl.getContainer();
 var controlContainerParent = routingControlContainer.parentNode;
 controlContainerParent.removeChild(routingControlContainer);
 var itineraryDiv = document.getElementById('routeDiv');
 itineraryDiv.appendChild(routingControlContainer);
+
+var geocoder = L.Control.Geocoder.nominatim();
+if (typeof URLSearchParams !== 'undefined' && location.search) {
+    var params = new URLSearchParams(location.search);
+    var geocoderString = params.get('geocoder');
+    if (geocoderString && L.Control.Geocoder[geocoderString]) {
+        console.log('Using geocoder', geocoderString);
+        geocoder = L.Control.Geocoder[geocoderString]();
+    } else if (geocoderString) {
+        console.warn('Unsupported geocoder', geocoderString);
+    }
+}
+
+var control = L.Control.geocoder({
+    query: 'Moon',
+    placeholder: 'Search here...',
+    geocoder: geocoder
+}).addTo(map);
 
 
 

@@ -40,6 +40,8 @@ var getIcon = function (type) {
         gi = '<i class="material-icons" style="font-size:24px;color:red">restaurant</i>';
     } else if (type == 'Park') {
         gi = '<i class="material-icons" style="font-size:24px;color:red">park</i>';
+    }else{
+        gi = '<i class="material-icons" style="font-size:24px;color:red">place</i>';
     }
     var icon = GoogleIcon('<span class="g-icon">' + gi + '</span>');
     return icon;
