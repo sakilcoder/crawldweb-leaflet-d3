@@ -1,22 +1,18 @@
 
 
 #map {
-  /* position: absolute!important; */
-  /* right: 0; */
-  /* left: 0; */
-  /* top: 0; */
-  /* bottom: 0; */
-  /* padding: 5px; */
   position: fixed!important;
-  /* right: 0;
-  bottom: 0;
-  top: inherit;
-  left: inherit; */
-  width: 82%;
-  height: 92%;
-  margin-top: 60px;
-  margin-left: -32px;
-  /* background-color: #fff;   */
+  width: 80%;
+  height: 88%;
+  margin-top: 70px;
+  margin-left: -28px;
+}
+#map3d {
+  position: fixed!important;
+  width: 100%;
+  height: 88%;
+  margin-top: 70px;
+  margin-left: -295px;
 }
 
 /* #map {

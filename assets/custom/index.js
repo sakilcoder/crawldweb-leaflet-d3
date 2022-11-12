@@ -22,7 +22,6 @@ let drawMarker = function (id, label, lat, lng) {
 }
 
 // --------------------------------------------------------------------
-
 var countyLayer;
 
 // var markers = L.layerGroup();
@@ -88,14 +87,22 @@ fetchText(csvUrl).then(text => {
         onEachFeature: onEachMarker,
     }).addTo(map);
 
-    // $("#search").autocomplete({
-    //     source: availableTags,
-    //     select: function (e, ui) {
-    //         console.log(ui);
-    //         //   $("#sval").val(ui.item.theValue);
-    //         drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
-    //     }
-    // });
+    $("#search").autocomplete({
+        source: availableTags,
+        select: function (e, ui) {
+            console.log(ui);
+            //   $("#sval").val(ui.item.theValue);
+            drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
+        }
+    });
+    $("#search-m").autocomplete({
+        source: availableTags,
+        select: function (e, ui) {
+            console.log(ui);
+            //   $("#sval").val(ui.item.theValue);
+            drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
+        }
+    });
 
 
 });
@@ -148,6 +155,8 @@ var controlContainerParent = routingControlContainer.parentNode;
 controlContainerParent.removeChild(routingControlContainer);
 var itineraryDiv = document.getElementById('routeDiv');
 itineraryDiv.appendChild(routingControlContainer);
+
+
 
 // let routeControl =  L.Routing.control({
 //         waypoints: [
