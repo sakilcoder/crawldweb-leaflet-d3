@@ -29,7 +29,7 @@ var map = L.map('map', {
     layers: [OpenStreetMap_Mapnik]
 }).setView([40.6584953781445, -73.90498729553246], 14);
 
-map.options.minZoom = 6;
+map.options.minZoom = 8;
 // map.fitBounds(aoiLayer.getBounds());
 var baseLayers = {
     'OSM': OpenStreetMap_Mapnik,
@@ -37,74 +37,152 @@ var baseLayers = {
     'Google': googleStreets,
     'Satellite': Esri_WorldImagery,
 };
-var layerControl = L.control.layers(baseLayers).addTo(map);
 
+let gas_stations_lg = L.layerGroup();
+let restaurantss_lg = L.layerGroup();
+let parks_lg = L.layerGroup();
 let markers_lg = L.layerGroup();
+
 
 var markers_geo = { "type": "FeatureCollection" };
 
 let markers = [];
 
-fetchText(csvUrl).then(text => {
-    let pois = d3.csvParse(text);
+// https://dev.crawldweb.com/maps/get-map-data.php
+// https://maps.sakil.dev/api/map-data.php
 
-    let availableTags = [];
-    for (i = 0; i < pois.length; i++) {
-        if (pois[i].latlon == '')
-            continue;
-        let latlng = pois[i].latlon.split(',')
-        let prop = {
-            "id": pois[i].sl,
-            "theValue": pois[i].sl,
-            "type": pois[i].type,
-            "name": pois[i].name,
-            "label": pois[i].name,
-            "address": pois[i].address,
-            "phone": pois[i].phone,
-            "lat": parseFloat(latlng[0]),
-            "lon": parseFloat(latlng[1]),
-        };
-        let feature = {
-            "type": "Feature",
-            "properties": {
+
+fetch('https://dev.crawldweb.com/maps/get-map-data.php') // 
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        let pois=data.data;
+
+        let availableTags = [];
+        for (i = 0; i < pois.length; i++) {
+            // if (pois[i].latlon == '')
+            //     continue;
+            // let latlng = pois[i].latlon.split(',')
+            let prop = {
                 "id": pois[i].sl,
+                "theValue": pois[i].sl,
                 "type": pois[i].type,
                 "name": pois[i].name,
+                "label": pois[i].name,
                 "address": pois[i].address,
                 "phone": pois[i].phone,
-            },
-            "geometry": { "type": "Point", "coordinates": [parseFloat(latlng[1]), parseFloat(latlng[0])] }
-        };
-        markers.push(feature);
-        availableTags.push(prop)
-    }
-    markers_geo.features = markers;
-
-    let markerLayer = L.geoJSON(markers_geo, {
-        onEachFeature: onEachMarker,
-    }).addTo(map);
-
-    $("#search").autocomplete({
-        source: availableTags,
-        select: function (e, ui) {
-            console.log(ui);
-            //   $("#sval").val(ui.item.theValue);
-            drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
+                "icon_url": pois[i].icon_url,
+                "lat": pois[i]. latitude,//parseFloat(latlng[0]),
+                "lon": pois[i].longitude, // parseFloat(latlng[1]),
+            };
+            // console.log(prop);
+            let feature = {
+                "type": "Feature",
+                "properties": {
+                    "id": pois[i].sl,
+                    "type": pois[i].type,
+                    "name": pois[i].name,
+                    "address": pois[i].address,
+                    "phone": pois[i].phone,
+                    "icon_url": pois[i].icon_url,
+                },
+                "geometry": { "type": "Point", "coordinates": [parseFloat(pois[i].longitude), parseFloat(pois[i].latitude)] }
+            };
+            markers.push(feature);
+            availableTags.push(prop);
         }
+        markers_geo.features = markers;
+
+        let markerLayer = L.geoJSON(markers_geo, {
+            onEachFeature: onEachMarker,
+        }).addTo(map);
+
+        $("#search").autocomplete({
+            source: availableTags,
+            select: function (e, ui) {
+                console.log(ui);
+                //   $("#sval").val(ui.item.theValue);
+                drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
+            }
+        });
+        $("#search-m").autocomplete({
+            source: availableTags,
+            select: function (e, ui) {
+                console.log(ui);
+                //   $("#sval").val(ui.item.theValue);
+                drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
+            }
+        });
     });
-    $("#search-m").autocomplete({
-        source: availableTags,
-        select: function (e, ui) {
-            console.log(ui);
-            //   $("#sval").val(ui.item.theValue);
-            drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
-        }
-    });
+
+// fetch('https://dev.crawldweb.com/maps/get-map-data.php')
+//   .then(response => response.json())
+//   .then(data => {
+//     console.log(data)
+//   })
+//   .catch(error => console.error(error));
 
 
-});
+// fetchText(csvUrl).then(text => {
+//     let pois = d3.csvParse(text);
 
 
+//     let availableTags = [];
+//     for (i = 0; i < pois.length; i++) {
+//         if (pois[i].latlon == '')
+//             continue;
+//         let latlng = pois[i].latlon.split(',')
+//         let prop = {
+//             "id": pois[i].sl,
+//             "theValue": pois[i].sl,
+//             "type": pois[i].type,
+//             "name": pois[i].name,
+//             "label": pois[i].name,
+//             "address": pois[i].address,
+//             "phone": pois[i].phone,
+//             "lat": parseFloat(latlng[0]),
+//             "lon": parseFloat(latlng[1]),
+//         };
+//         let feature = {
+//             "type": "Feature",
+//             "properties": {
+//                 "id": pois[i].sl,
+//                 "type": pois[i].type,
+//                 "name": pois[i].name,
+//                 "address": pois[i].address,
+//                 "phone": pois[i].phone,
+//             },
+//             "geometry": { "type": "Point", "coordinates": [parseFloat(latlng[1]), parseFloat(latlng[0])] }
+//         };
+//         markers.push(feature);
+//         availableTags.push(prop)
+//     }
+//     markers_geo.features = markers;
+
+//     let markerLayer = L.geoJSON(markers_geo, {
+//         onEachFeature: onEachMarker,
+//     }).addTo(map);
+
+//     $("#search").autocomplete({
+//         source: availableTags,
+//         select: function (e, ui) {
+//             console.log(ui);
+//             //   $("#sval").val(ui.item.theValue);
+//             drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
+//         }
+//     });
+//     $("#search-m").autocomplete({
+//         source: availableTags,
+//         select: function (e, ui) {
+//             console.log(ui);
+//             //   $("#sval").val(ui.item.theValue);
+//             drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
+//         }
+//     });
+
+// });
+
+var layerControl = L.control.layers(baseLayers).addTo(map);
 
 L.easyButton('fa-home fa-lg', function () {
     map.flyTo([40.6584953781445, -73.90498729553246], 14);
@@ -127,8 +205,8 @@ window.lrmConfig = {};
 
 var routeControl = L.Routing.control(L.extend(window.lrmConfig, {
     waypoints: [
-        // L.latLng(40.6584953781445, -73.90498729553246),
-        // L.latLng(40.681542945656254, -73.90318024134007)
+        L.latLng(40.6584953781445, -73.90498729553246),
+        L.latLng(40.681542945656254, -73.90318024134007)
     ],
     geocoder: L.Control.Geocoder.nominatim(),
     routeWhileDragging: true,
@@ -145,31 +223,13 @@ var routeControl = L.Routing.control(L.extend(window.lrmConfig, {
 
 console.log(routeControl);
 
-// L.Routing.errorControl(routeControl).addTo(map);
+L.Routing.errorControl(routeControl).addTo(map);
 
 var routingControlContainer = routeControl.getContainer();
 var controlContainerParent = routingControlContainer.parentNode;
 controlContainerParent.removeChild(routingControlContainer);
 var itineraryDiv = document.getElementById('routeDiv');
 itineraryDiv.appendChild(routingControlContainer);
-
-var geocoder = L.Control.Geocoder.nominatim();
-if (typeof URLSearchParams !== 'undefined' && location.search) {
-    var params = new URLSearchParams(location.search);
-    var geocoderString = params.get('geocoder');
-    if (geocoderString && L.Control.Geocoder[geocoderString]) {
-        console.log('Using geocoder', geocoderString);
-        geocoder = L.Control.Geocoder[geocoderString]();
-    } else if (geocoderString) {
-        console.warn('Unsupported geocoder', geocoderString);
-    }
-}
-
-var control = L.Control.geocoder({
-    query: 'Moon',
-    placeholder: 'Search here...',
-    geocoder: geocoder
-}).addTo(map);
 
 
 

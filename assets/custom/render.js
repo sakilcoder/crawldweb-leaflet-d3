@@ -1,7 +1,7 @@
 
 function onEachMarker(feature, layer) {
-
-    layer.setIcon(getIcon(feature.properties.type));
+    console.log(feature.properties);
+    layer.setIcon(setIconFromUrl(feature.properties.icon_url));
 
     var popup = L.popup();
     let str_popup = '';
@@ -32,6 +32,14 @@ function onEachMarker(feature, layer) {
 
 }
 
+var setIconFromUrl=function(iconUrl){
+    console.log(iconUrl);
+    return L.icon({
+        iconUrl: iconUrl,    
+        iconSize: [36, 36], // size of the icon
+    });
+}
+
 var getIcon = function (type) {
     let gi='';
     if (type == 'Gas station') {
@@ -40,8 +48,6 @@ var getIcon = function (type) {
         gi = '<i class="material-icons" style="font-size:24px;color:red">restaurant</i>';
     } else if (type == 'Park') {
         gi = '<i class="material-icons" style="font-size:24px;color:red">park</i>';
-    }else{
-        gi = '<i class="material-icons" style="font-size:24px;color:red">place</i>';
     }
     var icon = GoogleIcon('<span class="g-icon">' + gi + '</span>');
     return icon;

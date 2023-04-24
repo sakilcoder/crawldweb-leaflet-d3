@@ -1,12 +1,17 @@
 @font-face {
-  font-family: 'Barlow Condensed';
-  src: url('../fonts/BarlowCondensed-MediumItalic.woff2') format('woff2'),
-      url('../fonts/BarlowCondensed-MediumItalic.woff') format('woff');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: 400;
+  font-size: 150%;
+  src: url('../fonts/yanone-kaffeesatz-v8-latin/yanone-kaffeesatz-v8-latin-regular.woff2') format('woff2'), url('../fonts/yanone-kaffeesatz-v8-latin/yanone-kaffeesatz-v8-latin-regular.woff') format('woff');
 }
 
+/* Font Awesome 4.7.0 - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License) */
+@font-face {
+  font-family: 'FontAwesome';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../fonts/font-awesome-4.7.0/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('../fonts/font-awesome-4.7.0/fontawesome-webfont.woff?v=4.7.0') format('woff');
+}
 
 /*****************************************************************************/
 
@@ -172,9 +177,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'Barlow Condensed';
-  font-weight: 500;
-  font-style: italic;
+  font-family: Yanone Kaffeesatz, sans-serif;
   font-size: 26px;
   color: #333333;
   font-weight: normal;
@@ -183,9 +186,7 @@ h2 {
 }
 
 h3 {
-  font-family: 'Barlow Condensed';
-  font-weight: 500;
-  font-style: italic;
+  font-family: Yanone Kaffeesatz, sans-serif;
   font-size: 22px;
   color: #666666;
   font-weight: normal;
