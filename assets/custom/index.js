@@ -56,7 +56,7 @@ fetch('https://dev.crawldweb.com/maps/get-map-data.php') //
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        let pois=data.data;
+        let pois = data.data;
 
         let availableTags = [];
         for (i = 0; i < pois.length; i++) {
@@ -72,7 +72,7 @@ fetch('https://dev.crawldweb.com/maps/get-map-data.php') //
                 "address": pois[i].address,
                 "phone": pois[i].phone,
                 "icon_url": pois[i].icon_url,
-                "lat": pois[i]. latitude,//parseFloat(latlng[0]),
+                "lat": pois[i].latitude,//parseFloat(latlng[0]),
                 "lon": pois[i].longitude, // parseFloat(latlng[1]),
             };
             // console.log(prop);
@@ -115,74 +115,23 @@ fetch('https://dev.crawldweb.com/maps/get-map-data.php') //
         });
     });
 
-// fetch('https://dev.crawldweb.com/maps/get-map-data.php')
-//   .then(response => response.json())
-//   .then(data => {
-//     console.log(data)
-//   })
-//   .catch(error => console.error(error));
 
+var traffic = L.tileLayer('https://api.tomtom.com/traffic/map/4/tile/flow/relative0-dark/{z}/{x}/{y}.png?key={apiKey}', {
+    apiKey: ttkey,
+    maxZoom: 20
+}).addTo(map);
 
-// fetchText(csvUrl).then(text => {
-//     let pois = d3.csvParse(text);
+var incident = L.tileLayer('https://api.tomtom.com/traffic/map/4/tile/incidents/s0/{z}/{x}/{y}.png?t=-1&tileSize=256&key={apiKey}', {
+    apiKey: ttkey,
+    maxZoom: 20
+}).addTo(map);
 
+var overlayMaps = {
+    "Traffic": traffic,
+    "Incident": incident
+};
 
-//     let availableTags = [];
-//     for (i = 0; i < pois.length; i++) {
-//         if (pois[i].latlon == '')
-//             continue;
-//         let latlng = pois[i].latlon.split(',')
-//         let prop = {
-//             "id": pois[i].sl,
-//             "theValue": pois[i].sl,
-//             "type": pois[i].type,
-//             "name": pois[i].name,
-//             "label": pois[i].name,
-//             "address": pois[i].address,
-//             "phone": pois[i].phone,
-//             "lat": parseFloat(latlng[0]),
-//             "lon": parseFloat(latlng[1]),
-//         };
-//         let feature = {
-//             "type": "Feature",
-//             "properties": {
-//                 "id": pois[i].sl,
-//                 "type": pois[i].type,
-//                 "name": pois[i].name,
-//                 "address": pois[i].address,
-//                 "phone": pois[i].phone,
-//             },
-//             "geometry": { "type": "Point", "coordinates": [parseFloat(latlng[1]), parseFloat(latlng[0])] }
-//         };
-//         markers.push(feature);
-//         availableTags.push(prop)
-//     }
-//     markers_geo.features = markers;
-
-//     let markerLayer = L.geoJSON(markers_geo, {
-//         onEachFeature: onEachMarker,
-//     }).addTo(map);
-
-//     $("#search").autocomplete({
-//         source: availableTags,
-//         select: function (e, ui) {
-//             console.log(ui);
-//             //   $("#sval").val(ui.item.theValue);
-//             drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
-//         }
-//     });
-//     $("#search-m").autocomplete({
-//         source: availableTags,
-//         select: function (e, ui) {
-//             console.log(ui);
-//             //   $("#sval").val(ui.item.theValue);
-//             drawMarker(ui.item.id, ui.item.name, ui.item.lat, ui.item.lon)
-//         }
-//     });
-
-// });
-
-var layerControl = L.control.layers(baseLayers).addTo(map);
+var layerControl = L.control.layers(baseLayers, overlayMaps).addTo(map);
 
 L.easyButton('fa-home fa-lg', function () {
     map.flyTo([40.6584953781445, -73.90498729553246], 14);
@@ -230,45 +179,3 @@ var controlContainerParent = routingControlContainer.parentNode;
 controlContainerParent.removeChild(routingControlContainer);
 var itineraryDiv = document.getElementById('routeDiv');
 itineraryDiv.appendChild(routingControlContainer);
-
-
-
-// let routeControl =  L.Routing.control({
-//         waypoints: [
-//           L.latLng(40.6584953781445, -73.90498729553246),
-//           L.latLng(40.681542945656254, -73.90318024134007)
-//         ],
-//         routeWhileDragging: true
-//       }).addTo(map);
-
-// function createButton(label, container) {
-//     var btn = L.DomUtil.create('button', '', container);
-//     btn.setAttribute('type', 'button');
-//     btn.innerHTML = label;
-//     return btn;
-// }
-
-// map.on('click', function(e) {
-//     var container = L.DomUtil.create('div'),
-//         startBtn = createButton('Start from this location', container),
-//         destBtn = createButton('Go to this location', container);
-
-//     L.popup()
-//         .setContent(container)
-//         .setLatLng(e.latlng)
-//         .openOn(map);
-// });
-
-// L.Routing.control({
-//     waypoints: [
-//         L.latLng(40.6584953781445, -73.90498729553246),
-//         L.latLng(40.681542945656254, -73.90318024134007)
-//     ],
-//     routeWhileDragging: true,
-//     geocoder: L.Control.Geocoder.nominatim()
-// })
-// .on('routesfound', function(e) {
-//     var routes = e.routes;
-//     alert('Found ' + routes.length + ' route(s).');
-// })
-// .addTo(map);
